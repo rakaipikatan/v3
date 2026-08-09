@@ -1,5 +1,10 @@
 <?php
 
+use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
+use App\Http\Controllers\Admin\PaymentController as AdminPaymentController;
+use App\Http\Controllers\Admin\PaymentProofController as AdminPaymentProofController;
+use App\Http\Controllers\Admin\RaceNumberController as AdminRaceNumberController;
+use App\Http\Controllers\Admin\RegistrationController as AdminRegistrationController;
 use App\Http\Controllers\AthleteController;
 use App\Http\Controllers\ClubController;
 use App\Http\Controllers\ManagerController;
@@ -33,6 +38,20 @@ Route::middleware('auth')->group(function () {
         Route::get('registrations/{registration}', [RegistrationController::class, 'show'])->name('registrations.show');
         Route::post('registrations/{registration}/payment-proof', [PaymentController::class, 'store'])->name('registrations.payment-proof.store');
     });
+});
+
+Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function () {
+    Route::get('/', [AdminDashboardController::class, 'index'])->name('dashboard');
+
+    Route::get('/registrations', [AdminRegistrationController::class, 'index'])->name('registrations.index');
+    Route::get('/registrations/{registration}', [AdminRegistrationController::class, 'show'])->name('registrations.show');
+
+    Route::post('/payments/{payment}/approve', [AdminPaymentController::class, 'approve'])->name('payments.approve');
+    Route::post('/payments/{payment}/reject', [AdminPaymentController::class, 'reject'])->name('payments.reject');
+
+    Route::post('/registration-items/{registrationItem}/race-number', [AdminRaceNumberController::class, 'store'])->name('race-numbers.store');
+
+    Route::get('/payment-proofs/{paymentProof}', [AdminPaymentProofController::class, 'show'])->name('payment-proofs.show');
 });
 
 require __DIR__.'/auth.php';
