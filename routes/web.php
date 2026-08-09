@@ -10,12 +10,19 @@ use App\Http\Controllers\ClubController;
 use App\Http\Controllers\ManagerController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\PublicController;
 use App\Http\Controllers\RegistrationController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [PublicController::class, 'home'])->name('home');
+Route::get('/about', [PublicController::class, 'about'])->name('public.about');
+Route::get('/categories', [PublicController::class, 'categories'])->name('public.categories');
+Route::get('/competition-numbers', [PublicController::class, 'competitionNumbers'])->name('public.competition-numbers');
+Route::get('/fees', [PublicController::class, 'fees'])->name('public.fees');
+Route::get('/schedule', [PublicController::class, 'schedule'])->name('public.schedule');
+Route::get('/technical-handbook', [PublicController::class, 'handbook'])->name('public.handbook');
+Route::get('/sponsors', [PublicController::class, 'sponsors'])->name('public.sponsors');
+Route::get('/results', [PublicController::class, 'results'])->name('public.results');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

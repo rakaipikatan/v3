@@ -33,7 +33,7 @@
                                     <optgroup label="{{ ucfirst($group) }}">
                                         @foreach ($groupCategories as $category)
                                             <option value="{{ $category->id }}" @selected(old('category_id') == $category->id)>
-                                                {{ $category->name }} &mdash; Rp{{ number_format($category->fee) }}
+                                                {{ $category->name }} &mdash; Rp{{ number_format($category->fee, 0, ',', '.') }}
                                             </option>
                                         @endforeach
                                     </optgroup>

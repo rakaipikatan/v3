@@ -40,10 +40,10 @@
 
             <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg space-y-2 text-sm text-gray-700 dark:text-gray-300">
                 <h3 class="text-lg font-medium text-gray-900 dark:text-gray-100">{{ __('Invoice') }} &mdash; {{ $registration->invoice->invoice_number }}</h3>
-                <p><span class="text-gray-500 dark:text-gray-400">{{ __('Registration Fee') }}:</span> Rp{{ number_format($registration->invoice->base_fee) }}</p>
+                <p><span class="text-gray-500 dark:text-gray-400">{{ __('Registration Fee') }}:</span> Rp{{ number_format($registration->invoice->base_fee, 0, ',', '.') }}</p>
                 <p><span class="text-gray-500 dark:text-gray-400">{{ __('Unique Code') }}:</span> {{ $registration->invoice->unique_code }}</p>
                 <p class="font-semibold text-gray-900 dark:text-gray-100">
-                    {{ __('Total Transfer') }}: Rp{{ number_format($registration->invoice->total_amount) }}
+                    {{ __('Total Transfer') }}: Rp{{ number_format($registration->invoice->total_amount, 0, ',', '.') }}
                 </p>
                 <p class="text-xs text-gray-500 dark:text-gray-400">
                     {{ __('Transfer the exact total amount (including the unique code) to the committee\'s bank account, then upload proof below.') }}
