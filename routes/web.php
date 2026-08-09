@@ -34,21 +34,23 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    Route::get('/manager', [ManagerController::class, 'edit'])->name('manager.edit');
-    Route::put('/manager', [ManagerController::class, 'update'])->name('manager.update');
+    Route::middleware('verified')->group(function () {
+        Route::get('/manager', [ManagerController::class, 'edit'])->name('manager.edit');
+        Route::put('/manager', [ManagerController::class, 'update'])->name('manager.update');
 
-    Route::middleware('manager.exists')->group(function () {
-        Route::resource('clubs', ClubController::class)->except(['show']);
-        Route::resource('clubs.athletes', AthleteController::class)->except(['show']);
+        Route::middleware('manager.exists')->group(function () {
+            Route::resource('clubs', ClubController::class)->except(['show']);
+            Route::resource('clubs.athletes', AthleteController::class)->except(['show']);
 
-        Route::get('clubs/{club}/athletes/{athlete}/register', [RegistrationController::class, 'create'])->name('registrations.create');
-        Route::post('clubs/{club}/athletes/{athlete}/register', [RegistrationController::class, 'store'])->name('registrations.store');
-        Route::get('registrations/{registration}', [RegistrationController::class, 'show'])->name('registrations.show');
-        Route::post('registrations/{registration}/payment-proof', [PaymentController::class, 'store'])->name('registrations.payment-proof.store');
+            Route::get('clubs/{club}/athletes/{athlete}/register', [RegistrationController::class, 'create'])->name('registrations.create');
+            Route::post('clubs/{club}/athletes/{athlete}/register', [RegistrationController::class, 'store'])->name('registrations.store');
+            Route::get('registrations/{registration}', [RegistrationController::class, 'show'])->name('registrations.show');
+            Route::post('registrations/{registration}/payment-proof', [PaymentController::class, 'store'])->name('registrations.payment-proof.store');
+        });
     });
 });
 
-Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function () {
+Route::middleware(['auth', 'verified', 'admin'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('/', [AdminDashboardController::class, 'index'])->name('dashboard');
 
     Route::get('/registrations', [AdminRegistrationController::class, 'index'])->name('registrations.index');
