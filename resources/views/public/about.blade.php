@@ -1,5 +1,5 @@
 <x-public-layout title="{{ __('About') }}">
-    <x-page-header eyebrow="{{ __('The Championship') }}" title="{{ __('About') }}" accent="{{ __('V3 Open') }}" />
+    <x-page-header :eyebrow="__('The Championship')" :title="__('About')" :accent="__('V3 Open')" />
 
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div class="rounded-3xl bg-white dark:bg-gray-800 border border-gray-100 dark:border-gray-700 p-8">

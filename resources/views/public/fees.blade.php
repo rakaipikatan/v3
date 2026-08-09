@@ -1,5 +1,5 @@
 <x-public-layout title="{{ __('Registration Fees') }}">
-    <x-page-header eyebrow="{{ __('One Fee Table') }}" title="{{ __('Registration') }}" accent="{{ __('Fees') }}" />
+    <x-page-header :eyebrow="__('One Fee Table')" :title="__('Registration')" :accent="__('Fees')" />
 
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-6">
         <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">

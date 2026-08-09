@@ -1,5 +1,5 @@
 <x-public-layout title="{{ __('Categories') }}">
-    <x-page-header eyebrow="{{ __('Age Groups & Classes') }}" title="{{ __('Categories') }}" />
+    <x-page-header :eyebrow="__('Age Groups & Classes')" :title="__('Categories')" />
 
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-6">
         @foreach ($categories as $group => $groupCategories)

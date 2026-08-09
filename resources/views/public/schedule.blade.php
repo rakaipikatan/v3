@@ -1,5 +1,5 @@
 <x-public-layout title="{{ __('Schedule') }}">
-    <x-page-header eyebrow="{{ __('Mark the Date') }}" title="{{ __('Event') }}" accent="{{ __('Schedule') }}" />
+    <x-page-header :eyebrow="__('Mark the Date')" :title="__('Event')" :accent="__('Schedule')" />
 
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-4">
         @if ($event)

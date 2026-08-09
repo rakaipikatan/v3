@@ -1,9 +1,9 @@
 <x-public-layout title="{{ __('Competition Numbers') }}">
     <x-page-header
-        eyebrow="{{ __('Choose Your Events') }}"
-        title="{{ __('Competition') }}"
-        accent="{{ __('Numbers') }}"
-        description="{{ __('Each athlete may select a maximum of 3 competition numbers.') }}"
+        :eyebrow="__('Choose Your Events')"
+        :title="__('Competition')"
+        :accent="__('Numbers')"
+        :description="__('Each athlete may select a maximum of 3 competition numbers.')"
     />
 
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">

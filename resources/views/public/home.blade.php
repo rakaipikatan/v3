@@ -1,10 +1,10 @@
 <x-public-layout :title="$event?->name ?? config('app.name')">
     {{-- Hero --}}
     <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-8 text-center">
-        <p class="text-xs font-bold uppercase tracking-[0.2em] text-indigo-600 dark:text-indigo-400">
+        <p class="text-xs font-bold uppercase tracking-widest text-indigo-600 dark:text-indigo-400">
             {{ __('National Roller Sport Competition') }}
         </p>
-        <h1 class="mt-4 text-5xl sm:text-7xl font-black tracking-tighter leading-[0.95]">
+        <h1 class="mt-4 text-5xl sm:text-7xl font-black tracking-tighter leading-none">
             V3<br><span class="text-indigo-600 dark:text-indigo-400">OPEN</span>
         </h1>
 
@@ -26,7 +26,7 @@
         <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
             <div class="rounded-3xl overflow-hidden shadow-xl border border-gray-100 dark:border-gray-800">
                 <div class="h-40 sm:h-56 bg-gradient-to-br from-gray-900 via-indigo-900 to-indigo-600 flex items-center justify-center">
-                    <span class="text-white/70 text-xs font-bold uppercase tracking-[0.3em]">{{ $event->name }}</span>
+                    <span class="text-white/70 text-xs font-bold uppercase tracking-widest">{{ $event->name }}</span>
                 </div>
                 <div class="bg-white dark:bg-gray-900 p-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                     <div>
@@ -49,7 +49,7 @@
     {{-- Bento quick-access grid --}}
     <section class="bg-white dark:bg-gray-900 border-y border-gray-100 dark:border-gray-800 py-16">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <x-section-heading eyebrow="{{ __('Navigate') }}" title="{{ __('Event') }}" accent="{{ __('Hub') }}" />
+            <x-section-heading :eyebrow="__('Navigate')" :title="__('Event')" :accent="__('Hub')" />
 
             <div class="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {{-- Register + countdown --}}
@@ -118,7 +118,7 @@
     {{-- Fee & competition highlights --}}
     <section class="py-16">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <x-section-heading eyebrow="{{ __('Highlights') }}" title="{{ __('Compete') }}" accent="{{ __('& Register') }}" />
+            <x-section-heading :eyebrow="__('Highlights')" :title="__('Compete')" :accent="__('& Register')" />
 
             <div class="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div class="rounded-3xl bg-white dark:bg-gray-800 border border-gray-100 dark:border-gray-700 p-6">
