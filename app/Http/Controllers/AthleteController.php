@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Concerns\AuthorizesClubOwnership;
 use App\Http\Requests\AthleteRequest;
 use App\Models\Athlete;
 use App\Models\Club;
@@ -11,13 +12,15 @@ use Illuminate\View\View;
 
 class AthleteController extends Controller
 {
+    use AuthorizesClubOwnership;
+
     public function index(Request $request, Club $club): View
     {
         $this->authorizeClub($request, $club);
 
         return view('athletes.index', [
             'club' => $club,
-            'athletes' => $club->athletes()->latest()->get(),
+            'athletes' => $club->athletes()->with('registrations')->latest()->get(),
         ]);
     }
 
@@ -62,17 +65,5 @@ class AthleteController extends Controller
         $athlete->delete();
 
         return redirect()->route('clubs.athletes.index', $club)->with('status', 'athlete-deleted');
-    }
-
-    private function authorizeClub(Request $request, Club $club): void
-    {
-        abort_unless($club->manager_id === $request->user()->manager->id, 403);
-    }
-
-    private function authorizeAthlete(Request $request, Club $club, Athlete $athlete): void
-    {
-        $this->authorizeClub($request, $club);
-
-        abort_unless($athlete->club_id === $club->id, 404);
     }
 }

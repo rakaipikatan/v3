@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Concerns\AuthorizesClubOwnership;
 use App\Http\Requests\ClubRequest;
 use App\Models\Club;
 use Illuminate\Http\RedirectResponse;
@@ -10,6 +11,8 @@ use Illuminate\View\View;
 
 class ClubController extends Controller
 {
+    use AuthorizesClubOwnership;
+
     public function index(Request $request): View
     {
         return view('clubs.index', [
@@ -54,10 +57,5 @@ class ClubController extends Controller
         $club->delete();
 
         return redirect()->route('clubs.index')->with('status', 'club-deleted');
-    }
-
-    private function authorizeClub(Request $request, Club $club): void
-    {
-        abort_unless($club->manager_id === $request->user()->manager->id, 403);
     }
 }

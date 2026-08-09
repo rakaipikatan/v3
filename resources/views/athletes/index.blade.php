@@ -48,8 +48,13 @@
                                     <td class="px-6 py-4 text-gray-600 dark:text-gray-400">{{ $athlete->age }}</td>
                                     <td class="px-6 py-4 text-gray-600 dark:text-gray-400">{{ $athlete->blood_type ?? '-' }}</td>
                                     <td class="px-6 py-4 text-right space-x-3">
+                                        @if ($athlete->registrations->isNotEmpty())
+                                            <a href="{{ route('registrations.show', $athlete->registrations->first()) }}" class="text-indigo-600 dark:text-indigo-400 underline">{{ __('View Registration') }}</a>
+                                        @else
+                                            <a href="{{ route('registrations.create', [$club, $athlete]) }}" class="text-indigo-600 dark:text-indigo-400 underline">{{ __('Register') }}</a>
+                                        @endif
                                         <a href="{{ route('clubs.athletes.edit', [$club, $athlete]) }}" class="text-indigo-600 dark:text-indigo-400 underline">{{ __('Edit') }}</a>
-                                        @if ($athlete->registrations()->doesntExist())
+                                        @if ($athlete->registrations->isEmpty())
                                             <form method="post" action="{{ route('clubs.athletes.destroy', [$club, $athlete]) }}" class="inline" onsubmit="return confirm('{{ __('Delete this athlete?') }}')">
                                                 @csrf
                                                 @method('delete')

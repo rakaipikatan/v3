@@ -3,7 +3,9 @@
 use App\Http\Controllers\AthleteController;
 use App\Http\Controllers\ClubController;
 use App\Http\Controllers\ManagerController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RegistrationController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -25,6 +27,11 @@ Route::middleware('auth')->group(function () {
     Route::middleware('manager.exists')->group(function () {
         Route::resource('clubs', ClubController::class)->except(['show']);
         Route::resource('clubs.athletes', AthleteController::class)->except(['show']);
+
+        Route::get('clubs/{club}/athletes/{athlete}/register', [RegistrationController::class, 'create'])->name('registrations.create');
+        Route::post('clubs/{club}/athletes/{athlete}/register', [RegistrationController::class, 'store'])->name('registrations.store');
+        Route::get('registrations/{registration}', [RegistrationController::class, 'show'])->name('registrations.show');
+        Route::post('registrations/{registration}/payment-proof', [PaymentController::class, 'store'])->name('registrations.payment-proof.store');
     });
 });
 
