@@ -11,9 +11,14 @@
                 <div class="p-6 text-gray-900 dark:text-gray-100 space-y-4">
                     @if (auth()->user()->manager)
                         <p>{{ __('Manager profile complete.') }}</p>
-                        <a href="{{ route('manager.edit') }}" class="text-indigo-600 dark:text-indigo-400 underline">
-                            {{ __('Edit manager profile') }}
-                        </a>
+                        <div class="space-x-4">
+                            <a href="{{ route('manager.edit') }}" class="text-indigo-600 dark:text-indigo-400 underline">
+                                {{ __('Edit manager profile') }}
+                            </a>
+                            <a href="{{ route('clubs.index') }}" class="text-indigo-600 dark:text-indigo-400 underline">
+                                {{ __('My Clubs') }}
+                            </a>
+                        </div>
                     @else
                         <p>{{ __('Complete your manager profile before registering a club or athlete.') }}</p>
                         <a href="{{ route('manager.edit') }}" class="inline-block px-4 py-2 bg-gray-800 dark:bg-gray-200 text-white dark:text-gray-800 rounded-md text-sm font-semibold">

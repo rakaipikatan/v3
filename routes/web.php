@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ClubController;
 use App\Http\Controllers\ManagerController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -19,6 +20,10 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/manager', [ManagerController::class, 'edit'])->name('manager.edit');
     Route::put('/manager', [ManagerController::class, 'update'])->name('manager.update');
+
+    Route::middleware('manager.exists')->group(function () {
+        Route::resource('clubs', ClubController::class)->except(['show']);
+    });
 });
 
 require __DIR__.'/auth.php';
