@@ -19,6 +19,12 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
+            <div class="flex justify-end">
+                <a href="{{ route('admin.registrations.export') }}" class="inline-block px-4 py-2 bg-gray-800 dark:bg-gray-200 text-white dark:text-gray-800 rounded-md text-sm font-semibold">
+                    {{ __('Export CSV') }}
+                </a>
+            </div>
+
             <div class="flex flex-wrap gap-2">
                 <a href="{{ route('admin.registrations.index') }}" class="px-3 py-1 rounded-full text-xs font-semibold {{ $statusFilter === '' ? 'bg-gray-800 text-white dark:bg-gray-200 dark:text-gray-800' : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300' }}">
                     {{ __('All') }}

@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\PaymentController as AdminPaymentController;
 use App\Http\Controllers\Admin\PaymentProofController as AdminPaymentProofController;
 use App\Http\Controllers\Admin\RaceNumberController as AdminRaceNumberController;
 use App\Http\Controllers\Admin\RegistrationController as AdminRegistrationController;
+use App\Http\Controllers\Admin\RegistrationExportController;
 use App\Http\Controllers\AthleteController;
 use App\Http\Controllers\ClubController;
 use App\Http\Controllers\ManagerController;
@@ -51,6 +52,7 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     Route::get('/', [AdminDashboardController::class, 'index'])->name('dashboard');
 
     Route::get('/registrations', [AdminRegistrationController::class, 'index'])->name('registrations.index');
+    Route::get('/registrations-export', RegistrationExportController::class)->name('registrations.export');
     Route::get('/registrations/{registration}', [AdminRegistrationController::class, 'show'])->name('registrations.show');
 
     Route::post('/payments/{payment}/approve', [AdminPaymentController::class, 'approve'])->name('payments.approve');
