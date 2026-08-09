@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AthleteController;
 use App\Http\Controllers\ClubController;
 use App\Http\Controllers\ManagerController;
 use App\Http\Controllers\ProfileController;
@@ -23,6 +24,7 @@ Route::middleware('auth')->group(function () {
 
     Route::middleware('manager.exists')->group(function () {
         Route::resource('clubs', ClubController::class)->except(['show']);
+        Route::resource('clubs.athletes', AthleteController::class)->except(['show']);
     });
 });
 

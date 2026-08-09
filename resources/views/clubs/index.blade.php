@@ -45,8 +45,11 @@
                                     <td class="px-6 py-4 text-gray-600 dark:text-gray-400">{{ $club->club_pic }}</td>
                                     <td class="px-6 py-4 text-gray-600 dark:text-gray-400">{{ $club->city }}</td>
                                     <td class="px-6 py-4 text-gray-600 dark:text-gray-400">{{ $club->province }}</td>
-                                    <td class="px-6 py-4 text-gray-600 dark:text-gray-400">{{ $club->athletes_count }}</td>
+                                    <td class="px-6 py-4 text-gray-600 dark:text-gray-400">
+                                        <a href="{{ route('clubs.athletes.index', $club) }}" class="underline">{{ $club->athletes_count }}</a>
+                                    </td>
                                     <td class="px-6 py-4 text-right space-x-3">
+                                        <a href="{{ route('clubs.athletes.index', $club) }}" class="text-indigo-600 dark:text-indigo-400 underline">{{ __('Athletes') }}</a>
                                         <a href="{{ route('clubs.edit', $club) }}" class="text-indigo-600 dark:text-indigo-400 underline">{{ __('Edit') }}</a>
                                         @if ($club->athletes_count === 0)
                                             <form method="post" action="{{ route('clubs.destroy', $club) }}" class="inline" onsubmit="return confirm('{{ __('Delete this club?') }}')">

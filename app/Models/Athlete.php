@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Attributes\Fillable;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -18,6 +19,11 @@ class Athlete extends Model
         return [
             'date_of_birth' => 'date',
         ];
+    }
+
+    protected function age(): Attribute
+    {
+        return Attribute::get(fn () => $this->date_of_birth?->age);
     }
 
     public function club(): BelongsTo
